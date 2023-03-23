@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "703257843771",
+    "project_id": "ecommerce-3276c",
+    "storage_bucket": "ecommerce-3276c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703257843771:android:e11197c1d3a53e605d641e",
+        "android_client_info": {
+          "package_name": "com.heistejiri.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703257843771-ac7u8q05uldf4av7n8lbpopidamjlqe6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.heistejiri.ecommerce",
+            "certificate_hash": "f02ad1efe6471dc43bcad4ed2db88b1d3003711f"
+          }
+        },
+        {
+          "client_id": "703257843771-6emegdf17n4eocako4e0ain40citl50a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBByNHaTh9PenoEfqmIeved3UxR55HSUuU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703257843771-6emegdf17n4eocako4e0ain40citl50a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
