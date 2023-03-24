@@ -121,5 +121,4 @@
         app:layout_constraintTop_toBottomOf="@+id/logInButton"/>
 
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
