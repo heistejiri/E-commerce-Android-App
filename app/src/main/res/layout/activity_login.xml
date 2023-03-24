@@ -8,4 +8,18 @@
     android:background="@color/colorBKG"
     tools:context=".LoginActivity">
 
+    <TextView
+        android:id="@+id/logIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="128dp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textSize="50sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
