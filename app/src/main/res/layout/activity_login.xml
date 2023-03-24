@@ -86,17 +86,39 @@
         android:text="Forgot Password?"
         android:textColor="@color/white"
         android:textSize="16sp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/editPassWord"
         app:layout_constraintStart_toStartOf="@+id/editPassWord"
         app:layout_constraintTop_toBottomOf="@+id/editPassWord"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/logInButton"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/forgotPassword"
+        android:layout_height="50dp"
+        android:background="@drawable/button_background"
+        style="@android:style/Widget.Button"
+        android:text="LOGIN"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="@+id/editPassWord"
         app:layout_constraintStart_toStartOf="@+id/editPassWord"
-        app:layout_constraintTop_toBottomOf="@+id/editPassWord"/>
+        app:layout_constraintTop_toBottomOf="@+id/forgotPassword"/>
+
+    <TextView
+        android:id="@+id/signUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't Have An Account? Sign Up"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/editPassWord"
+        app:layout_constraintStart_toStartOf="@+id/editPassWord"
+        app:layout_constraintTop_toBottomOf="@+id/logInButton"/>
 
 
 
