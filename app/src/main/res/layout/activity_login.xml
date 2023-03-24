@@ -91,6 +91,13 @@
         app:layout_constraintStart_toStartOf="@+id/editPassWord"
         app:layout_constraintTop_toBottomOf="@+id/editPassWord"/>
 
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/forgotPassword"
+        app:layout_constraintStart_toStartOf="@+id/editPassWord"
+        app:layout_constraintTop_toBottomOf="@+id/editPassWord"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
