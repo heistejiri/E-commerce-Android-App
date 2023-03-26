@@ -12,6 +12,18 @@
         android:theme="@style/Theme.EcommerceApp"
         tools:targetApi="31">
         <activity
+            android:name=".StripePaymentIntegration"
+            android:exported="false" />
+        <activity
+            android:name=".RazorPayIntegration"
+            android:exported="false" />
+        <activity
+            android:name=".PayPalActivityPayment"
+            android:exported="false" />
+        <activity
+            android:name=".OrderConfirmed"
+            android:exported="false" />
+        <activity
             android:name=".OptionalImageFullView"
             android:exported="false" />
         <activity
