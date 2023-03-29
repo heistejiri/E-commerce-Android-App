@@ -1,66 +1,80 @@
 package com.heistejiri.ecommerce.Fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.heistejiri.ecommerce.Adapters.DetailOrderProductListAdapter;
+import com.heistejiri.ecommerce.Adapters.WishListAdapter;
+import com.heistejiri.ecommerce.Config;
+import com.heistejiri.ecommerce.MVP.Ordere;
+import com.heistejiri.ecommerce.Activities.MainActivity;
 import com.heistejiri.ecommerce.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MyOrderedProductsDetailPage#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
+
 public class MyOrderedProductsDetailPage extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public MyOrderedProductsDetailPage() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MyOrderedProductsDetailPage.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MyOrderedProductsDetailPage newInstance(String param1, String param2) {
-        MyOrderedProductsDetailPage fragment = new MyOrderedProductsDetailPage();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    View view;
+    @BindView(R.id.orderedProductsRecyclerView)
+    RecyclerView orderedProductsRecyclerView;
+    public static List<Ordere> orderes;
+    @BindViews({R.id.orderNo, R.id.date, R.id.totalAmount, R.id.paymentMode, R.id.shippingAddress, R.id.orderStatus})
+    List<TextView> textViews;
+    public static int pos;
+    public static String currency;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_ordered_products_detail_page, container, false);
+        view = inflater.inflate(R.layout.fragment_my_ordered_products_detail, container, false);
+        ButterKnife.bind(this, view);
+        MainActivity.title.setText("");
+        setData();
+        setProductsData();
+
+        return view;
+    }
+
+    private void setData() {
+        if (orderes.get(pos).getOrdredproduct().get(0).getCurrency().equalsIgnoreCase("USD"))
+            currency = "$";
+        else
+            currency = "₹";
+        textViews.get(0).setText(orderes.get(pos).getOrderid());
+        textViews.get(1).setText(orderes.get(pos).getDate());
+        textViews.get(3).setText(orderes.get(pos).getPaymentmode());
+        textViews.get(4).setText(orderes.get(pos).getAddress());
+        textViews.get(5).setText(orderes.get(pos).getOrdredproduct().get(0).getOrderstatus());
+        textViews.get(2).setText(currency + " " + orderes.get(pos).getTotal());
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((MainActivity) getActivity()).lockUnlockDrawer(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        Config.getCartList(getActivity(), true);
+    }
+
+    private void setProductsData() {
+        WishListAdapter wishListAdapter;
+        GridLayoutManager gridLayoutManager;
+        gridLayoutManager = new GridLayoutManager(getActivity(), 1);
+        orderedProductsRecyclerView.setLayoutManager(gridLayoutManager);
+        DetailOrderProductListAdapter myOrdersAdapter = new DetailOrderProductListAdapter(getActivity(), orderes.get(pos).getOrdredproduct());
+        orderedProductsRecyclerView.setAdapter(myOrdersAdapter);
+
     }
 }

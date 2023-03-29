@@ -1,66 +1,120 @@
 package com.heistejiri.ecommerce.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import com.heistejiri.ecommerce.Adapters.SearchProductListAdapter;
+import com.heistejiri.ecommerce.MVP.Product;
+import com.heistejiri.ecommerce.Activities.MainActivity;
 import com.heistejiri.ecommerce.R;
+import com.heistejiri.ecommerce.Activities.SplashScreen;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SearchProducts#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class SearchProducts extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    @BindView(R.id.searchProductsRecyclerView)
+    RecyclerView searchProductsRecyclerView;
+    @BindView(R.id.searchEditText)
+    EditText searchEditText;
+    List<Product> productList;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SearchProducts() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SearchProducts.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SearchProducts newInstance(String param1, String param2) {
-        SearchProducts fragment = new SearchProducts();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    @BindView(R.id.defaultMessage)
+    TextView defaultMessage;
+    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_products, container, false);
+        view = inflater.inflate(R.layout.activity_search_products, container, false);
+        ButterKnife.bind(this, view);
+        defaultMessage.setText("Search Any Product");
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d("text", editable.toString());
+                searchProducts(editable.toString());
+            }
+        });
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((MainActivity) getActivity()).lockUnlockDrawer(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        MainActivity.title.setText("Search");
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    private void searchProducts(String s) {
+        productList = new ArrayList<>();
+        if (s.length() > 0) {
+            for (int i = 0; i < SplashScreen.allProductsData.size(); i++)
+                if (SplashScreen.allProductsData.get(i).getProductName().toLowerCase().contains(s.toLowerCase().trim())) {
+                    productList.add(SplashScreen.allProductsData.get(i));
+                }
+            if (productList.size() < 1) {
+                defaultMessage.setText("Record Not Found");
+                defaultMessage.setVisibility(View.VISIBLE);
+            } else {
+                defaultMessage.setVisibility(View.GONE);
+            }
+            Log.d("size", productList.size() + "" + SplashScreen.allProductsData.size());
+        } else {
+            productList = new ArrayList<>();
+            defaultMessage.setText("Search Any Product");
+            defaultMessage.setVisibility(View.VISIBLE);
+        }
+        setProductsData();
+
+
+    }
+
+    private void setProductsData() {
+        SearchProductListAdapter productListAdapter;
+        GridLayoutManager gridLayoutManager;
+        gridLayoutManager = new GridLayoutManager(getActivity(), 1);
+        searchProductsRecyclerView.setLayoutManager(gridLayoutManager);
+        productListAdapter = new SearchProductListAdapter(getActivity(), productList);
+        searchProductsRecyclerView.setAdapter(productListAdapter);
+
     }
 }
