@@ -11,10 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.heistejiri.ecommerce.Activities.Login;
+import com.heistejiri.ecommerce.Activities.LoginActivity;
 import com.heistejiri.ecommerce.Activities.MainActivity;
 import com.heistejiri.ecommerce.PaymentIntegrationMethods.OrderConfirmed;
-import com.heistejiri.ecommerce.Activities.SignUp;
+import com.heistejiri.ecommerce.Activities.SignUpActivity;
 import com.heistejiri.ecommerce.Adapters.CartListAdapter;
 import com.heistejiri.ecommerce.Fragments.ChoosePaymentMethod;
 import com.heistejiri.ecommerce.Fragments.MyCartList;
@@ -74,7 +74,7 @@ public class Config {
         alertDialog.setCancelClickListener( new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
-                Config.moveTo(context, Login.class);
+                Config.moveTo(context, LoginActivity.class);
 
             }
         });
@@ -82,7 +82,7 @@ public class Config {
         alertDialog.setConfirmClickListener( new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
-                Config.moveTo(context, SignUp.class);
+                Config.moveTo(context, SignUpActivity.class);
 
             }
         });
