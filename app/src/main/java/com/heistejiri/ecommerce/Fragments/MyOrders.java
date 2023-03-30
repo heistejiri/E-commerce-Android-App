@@ -15,12 +15,12 @@ import android.widget.LinearLayout;
 import com.heistejiri.ecommerce.Activities.AccountVerification;
 import com.heistejiri.ecommerce.Adapters.MyOrdersAdapter;
 import com.heistejiri.ecommerce.Config;
-import com.heistejiri.ecommerce.Activities.Login;
+import com.heistejiri.ecommerce.Activities.LoginActivity;
 import com.heistejiri.ecommerce.MVP.MyOrdersResponse;
 import com.heistejiri.ecommerce.Activities.MainActivity;
 import com.heistejiri.ecommerce.R;
 import com.heistejiri.ecommerce.Retrofit.Api;
-import com.heistejiri.ecommerce.Activities.SignUp;
+import com.heistejiri.ecommerce.Activities.SignUpActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,10 +69,10 @@ public class MyOrders extends Fragment {
                 getActivity().finish();
                 break;
             case R.id.loginNow:
-                Config.moveTo(getActivity(), Login.class);
+                Config.moveTo(getActivity(), LoginActivity.class);
                 break;
             case R.id.txtSignUp:
-                Config.moveTo(getActivity(), SignUp.class);
+                Config.moveTo(getActivity(), SignUpActivity.class);
                 break;
 
             case R.id.verfiyNow:
