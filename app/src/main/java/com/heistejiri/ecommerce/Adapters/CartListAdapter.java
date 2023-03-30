@@ -1,5 +1,6 @@
 package com.heistejiri.ecommerce.Adapters;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Paint;
@@ -57,7 +58,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(final CartListViewHolder holder, final int position) {
+    public void onBindViewHolder(final CartListViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         if (position == productList.size() - 1) {
             holder.totalAmount.setVisibility(View.VISIBLE);
             holder.txtGurantee.setText(Html.fromHtml(context.getResources().getString(R.string.secure_payment_text)));
