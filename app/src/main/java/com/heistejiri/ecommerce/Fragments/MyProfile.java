@@ -17,13 +17,13 @@ import android.widget.Toast;
 import com.heistejiri.ecommerce.Activities.AccountVerification;
 import com.heistejiri.ecommerce.Common;
 import com.heistejiri.ecommerce.Config;
-import com.heistejiri.ecommerce.Activities.Login;
+import com.heistejiri.ecommerce.Activities.LoginActivity;
 import com.heistejiri.ecommerce.MVP.SignUpResponse;
 import com.heistejiri.ecommerce.MVP.UserProfileResponse;
 import com.heistejiri.ecommerce.Activities.MainActivity;
 import com.heistejiri.ecommerce.R;
 import com.heistejiri.ecommerce.Retrofit.Api;
-import com.heistejiri.ecommerce.Activities.SignUp;
+import com.heistejiri.ecommerce.Activities.SignUpActivity;
 
 import java.util.List;
 
@@ -141,10 +141,10 @@ public class MyProfile extends Fragment {
                 logout();
                 break;
             case R.id.loginNow:
-                Config.moveTo(getActivity(), Login.class);
+                Config.moveTo(getActivity(), LoginActivity.class);
                 break;
             case R.id.txtSignUp:
-                Config.moveTo(getActivity(), SignUp.class);
+                Config.moveTo(getActivity(), SignUpActivity.class);
                 break;
 
             case R.id.verfiyNow:
@@ -173,7 +173,7 @@ public class MyProfile extends Fragment {
             public void onClick(View view) {
                 Common.saveUserData(getActivity(), "email", "");
                 Common.saveUserData(getActivity(), "userId", "");
-                Config.moveTo(getActivity(), Login.class);
+                Config.moveTo(getActivity(), LoginActivity.class);
                 getActivity().finishAffinity();
 
             }
