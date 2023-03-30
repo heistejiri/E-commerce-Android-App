@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.heistejiri.ecommerce.Activities.SplashScreen;
 import com.heistejiri.ecommerce.Adapters.ProductListAdapter;
 import com.heistejiri.ecommerce.Config;
 import com.heistejiri.ecommerce.Activities.MainActivity;
 import com.heistejiri.ecommerce.R;
-import com.heistejiri.ecommerce.Activities.SplashActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +38,7 @@ public class ProductsList extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_category_list, container, false);
         ButterKnife.bind(this, view);
-        MainActivity.title.setText(SplashScreen.categoryListResponseData.get(categoryPosition).getCategory_name());
+        MainActivity.title.setText(SplashActi.categoryListResponseData.get(categoryPosition).getCategory_name());
         setProductsData();
         contShopping.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,12 +65,12 @@ public class ProductsList extends Fragment {
     }
 
     private void setProductsData() {
-        if (SplashScreen.categoryListResponseData.get(categoryPosition).getProducts().size() > 0) {
+        if (SplashActivity.categoryListResponseData.get(categoryPosition).getProducts().size() > 0) {
             ProductListAdapter productListAdapter;
             GridLayoutManager gridLayoutManager;
             gridLayoutManager = new GridLayoutManager(getActivity(), 1);
             productsRecyclerView.setLayoutManager(gridLayoutManager);
-            productListAdapter = new ProductListAdapter(getActivity(), SplashScreen.categoryListResponseData.get(categoryPosition).getProducts(), categoryPosition);
+            productListAdapter = new ProductListAdapter(getActivity(), SplashActivity.categoryListResponseData.get(categoryPosition).getProducts(), categoryPosition);
             productsRecyclerView.setAdapter(productListAdapter);
         } else {
             noProductAddedLayout.setVisibility(View.VISIBLE);
