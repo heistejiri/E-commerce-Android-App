@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.heistejiri.ecommerce.Activities.SplashScreen;
+import com.heistejiri.ecommerce.Activities.SplashActivity;
 import com.heistejiri.ecommerce.Adapters.ProductListAdapter;
 import com.heistejiri.ecommerce.Config;
 import com.heistejiri.ecommerce.Activities.MainActivity;
@@ -38,7 +38,7 @@ public class ProductsList extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_category_list, container, false);
         ButterKnife.bind(this, view);
-        MainActivity.title.setText(SplashActi.categoryListResponseData.get(categoryPosition).getCategory_name());
+        MainActivity.title.setText(SplashActivity.categoryListResponseData.get(categoryPosition).getCategory_name());
         setProductsData();
         contShopping.setOnClickListener(new View.OnClickListener() {
             @Override
