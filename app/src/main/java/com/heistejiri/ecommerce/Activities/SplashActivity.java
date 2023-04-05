@@ -31,7 +31,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class SplashScreen extends Activity {
+public class SplashActivity extends Activity {
 
     public static List<CategoryListResponse> categoryListResponseData;
     public static List<SliderListResponse> sliderListResponsesData;
@@ -50,7 +50,7 @@ public class SplashScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         sharedPreferencesCache = getSharedPreferences("cacheExist", 0);
@@ -188,11 +188,11 @@ public class SplashScreen extends Activity {
             Log.d("error notification data", e.toString());
             isFromNotification = false;
         }
-        if (Common.getSavedUserData(SplashScreen.this, "email").equalsIgnoreCase("")&&!isFromNotification) {
-            Config.moveTo(SplashScreen.this, LoginActivity.class);
+        if (Common.getSavedUserData(SplashActivity.this, "email").equalsIgnoreCase("")&&!isFromNotification) {
+            Config.moveTo(SplashActivity.this, LoginActivity.class);
             finishAffinity();
         } else {
-            Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             intent.putExtra("isFromNotification", isFromNotification);
             startActivity(intent);
             finishAffinity();
